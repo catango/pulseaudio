@@ -42,6 +42,13 @@
 #error "Please include config.h before including this file!"
 #endif
 
+#ifdef OS_IS_WIN32
+#include <windows.h>
+#include <ws2tcpip.h>
+#endif
+
+#include<windows.h>
+
 struct timeval;
 
 /* These resource limits are pretty new on Linux, let's define them

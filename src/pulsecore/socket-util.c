@@ -61,6 +61,12 @@
 #include <pulsecore/socket.h>
 #include <pulsecore/arpa-inet.h>
 
+
+#ifdef HAVE_WINDOWS_H
+#include <Winsock2.h>
+#include <ws2tcpip.h>
+#endif
+
 #include "socket-util.h"
 
 void pa_socket_peer_to_string(int fd, char *c, size_t l) {

@@ -27,6 +27,13 @@
 
 #include <sys/types.h>
 
+#ifdef HAVE_WINDOWS_H
+//#include <Ws2def.h>
+#include <winsock2.h>
+#include <windows.h>
+#endif
+
+
 #include <pulsecore/socket.h>
 #include <pulsecore/core-util.h>
 

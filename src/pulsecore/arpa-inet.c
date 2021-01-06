@@ -25,6 +25,13 @@
 
 #include <errno.h>
 
+#ifdef HAVE_WINDOWS_H
+
+#include <winsock2.h>
+#include <Ws2def.h>
+//#include <windows.h>
+#endif
+
 #include <pulsecore/macro.h>
 #include <pulsecore/socket.h>
 #include <pulsecore/core-util.h>

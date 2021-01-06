@@ -22,10 +22,15 @@
 #endif
 
 #include <stdio.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
 #include <errno.h>
 #include <unistd.h>
+
+#ifndef HAVE_WINDOWS_H
+#include <sys/socket.h>
+#include <netinet/in.h>
+#else
+#include <Winsock2.h>
+#endif
 
 #include <pulse/rtclock.h>
 #include <pulse/timeval.h>

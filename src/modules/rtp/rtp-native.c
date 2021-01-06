@@ -25,7 +25,10 @@
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
+
+#ifndef HAVE_WINDOWS_H
 #include <sys/ioctl.h>
+#endif
 
 #ifdef HAVE_SYS_FILIO_H
 #include <sys/filio.h>
@@ -43,6 +46,7 @@
 #include <pulsecore/poll.h>
 
 #include "rtp.h"
+
 
 typedef struct pa_rtp_context {
     int fd;

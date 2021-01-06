@@ -24,8 +24,19 @@
 #include <time.h>
 #include <stdlib.h>
 #include <sys/types.h>
+
+
+#ifndef HAVE_WINDOWS_H
 #include <sys/socket.h>
 #include <netinet/in.h>
+#else
+#include <windows.h>
+#include <Winsock2.h>
+#include <ws2tcpip.h>
+#endif
+
+
+
 #include <string.h>
 
 #include <pulse/xmalloc.h>

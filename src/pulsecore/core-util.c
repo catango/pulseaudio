@@ -83,6 +83,7 @@
 
 #ifdef HAVE_WINDOWS_H
 #include <windows.h>
+#include <winsock.h>
 #endif
 
 #ifndef ENOTSUP

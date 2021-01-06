@@ -41,6 +41,12 @@
 #include <netinet/in.h>
 #endif
 
+/*
+#ifdef HAVE_WINDOWS_H
+#include <ws2def.h>
+#endif
+*/
+
 #ifdef HAVE_LIBWRAP
 #include <tcpd.h>
 

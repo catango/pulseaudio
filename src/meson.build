@@ -187,7 +187,7 @@ libpulsecommon = shared_library('pulsecommon-' + pa_version_major_minor,
   install_dir : privlibdir,
   dependencies : [
     libm_dep, thread_dep, dl_dep, shm_dep, iconv_dep, sndfile_dep, dbus_dep,
-    x11_dep, libsystemd_dep, glib_dep, gtk_dep, asyncns_dep, libintl_dep,
+    x11_dep, libsystemd_dep, glib_dep, gtk_dep, asyncns_dep, libintl_dep, networking_deps, pcre_dep
   ],
   implicit_include_directories : false)
 

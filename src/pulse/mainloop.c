@@ -49,6 +49,14 @@
 #include "mainloop.h"
 #include "internal.h"
 
+#ifdef HAVE_WINDOWS_H
+struct pollfd {
+        short events;
+        int fd;
+        short revents;
+};
+#endif
+
 struct pa_io_event {
     pa_mainloop *mainloop;
     bool dead:1;

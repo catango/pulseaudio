@@ -51,6 +51,36 @@
 
 #define AUTOSPAWN_LOCK "autospawn.lock"
 
+
+#ifdef HAVE_WINDOWS_H
+/*
+struct pollfd {
+        short events;
+        int fd;
+        short revents;
+};
+*/
+
+typedef _sigset_t	sigset_t;
+/*
+// from mingw
+#ifndef _SIGSET_T_
+#define _SIGSET_T_
+#ifdef _WIN64
+__MINGW_EXTENSION
+typedef unsigned long long sigset_t;
+#else
+typedef unsigned long	_sigset_t;
+#endif
+
+typedef _sigset_t	sigset_t;
+
+
+#endif	/* _INC_TYPES */;
+
+#endif
+
+
 static pa_mutex *mutex;
 
 static unsigned n_ref = 0;

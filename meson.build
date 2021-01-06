@@ -165,6 +165,19 @@ if host_machine.system() == 'darwin'
 elif host_machine.system() == 'windows'
   cdata.set('OS_IS_WIN32', 1)
   cdata.set('WIN32_LEAN_AND_MEAN', 1) # Needed to avoid including unnecessary headers on Windows
+# Add missing windows types
+  cdata.set('gid_t', 'int')
+  cdata.set('uid_t', 'int')
+#  cdata.set('socklen_t', 'int')
+  cdata.set('suseconds_t', 'long')
+  cdata.set('HAVE_WINDOWS_H', 1)
+
+if host_machine.system() == 'windows'
+  networking_deps = cc.find_library('ws2_32')
+endif
+
+pcre_dep = cc.find_library('libpcreposix', required : true)
+
 #elif host_machine.system() == 'solaris'
 #  # Apparently meson has no solaris support?
 #  # Needed to get declarations for msg_control and msg_controllen on Solaris
@@ -216,6 +229,7 @@ check_headers = [
   'sys/select.h',
   'sys/socket.h',
   'sys/syscall.h',
+  'sys/types.h',
   'sys/uio.h',
   'sys/un.h',
   'sys/wait.h',
@@ -350,10 +364,15 @@ pa_c_args = ['-DHAVE_CONFIG_H', '-D_GNU_SOURCE']
 server_c_args = ['-D__INCLUDED_FROM_PULSE_AUDIO']
 cdata.set('MESON_BUILD', 1)
 
-# On ELF systems we don't want the libraries to be unloaded since we don't clean them up properly,
-# so we request the nodelete flag to be enabled.
-# On other systems, we don't really know how to do that, but it's welcome if somebody can tell.
-nodelete_link_args = ['-Wl,-z,nodelete']
+
+if host_machine.system() != 'windows'
+    # On ELF systems we don't want the libraries to be unloaded since we don't clean them up properly,
+    # so we request the nodelete flag to be enabled.
+    # On other systems, we don't really know how to do that, but it's welcome if somebody can tell.
+    nodelete_link_args = ['-Wl,-z,nodelete']
+else
+    nodelete_link_args = []
+endif
 
 # Code coverage
 
@@ -711,6 +730,7 @@ subdir('src')
 subdir('vala')
 
 # Now generate config.h from everything above
+#configure_file(input: 'config.h.meson', output : 'config.h', configuration : cdata)
 configure_file(output : 'config.h', configuration : cdata)
 
 # pkg-config files

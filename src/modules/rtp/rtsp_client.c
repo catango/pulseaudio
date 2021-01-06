@@ -25,8 +25,19 @@
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
+
+#ifndef HAVE_WINDOWS_H
 #include <sys/ioctl.h>
 #include <netinet/in.h>
+#else
+#include <windows.h>
+#include <winsock2.h>
+#endif
+
+
+
+
+
 #include <pulse/rtclock.h>
 #include <pulse/timeval.h>
 

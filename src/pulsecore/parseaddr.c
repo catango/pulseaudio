@@ -30,6 +30,21 @@
 #include <pulsecore/macro.h>
 #include <pulsecore/arpa-inet.h>
 
+#ifdef HAVE_WINDOWS_H
+#include <Ws2def.h>
+#include <winsock2.h>
+//#include <Ws2ipdef.h>
+#endif
+
+#ifndef INET_ADDRSTRLEN
+#define INET_ADDRSTRLEN 16
+#endif
+
+#ifndef INET6_ADDRSTRLEN
+#define INET6_ADDRSTRLEN INET_ADDRSTRLEN
+#endif
+
+
 #include "parseaddr.h"
 
 /* Parse addresses in one of the following forms:

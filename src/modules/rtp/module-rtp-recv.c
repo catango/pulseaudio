@@ -23,8 +23,17 @@
 #endif
 
 #include <stdio.h>
+
+
+#ifndef HAVE_WINDOWS_H
 #include <sys/socket.h>
 #include <netinet/in.h>
+#else
+#include <Winsock2.h>
+#endif
+
+
+
 #include <errno.h>
 #include <string.h>
 #include <unistd.h>

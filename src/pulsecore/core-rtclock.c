@@ -42,9 +42,13 @@
 #include <unistd.h>
 #endif
 
+
 #ifdef HAVE_WINDOWS_H
 #include <windows.h>
 #endif
+
+//#include <windows.h>
+
 
 #include <pulse/timeval.h>
 #include <pulsecore/macro.h>

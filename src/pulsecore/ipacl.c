@@ -45,6 +45,13 @@
 #include <pulsecore/socket.h>
 #include <pulsecore/arpa-inet.h>
 
+#ifdef HAVE_WINDOWS_H
+#include <ws2def.h>
+#include <winsock2.h>
+#include <Ws2ipdef.h>
+#endif
+
+
 #include "ipacl.h"
 
 struct acl_entry {

@@ -21,9 +21,15 @@
 ***/
 
 #include <inttypes.h>
+
+#ifndef HAVE_WINDOWS_H
 #include <sys/socket.h>
-#include <sys/types.h>
 #include <netdb.h>
+#endif
+
+
+
+#include <sys/types.h>
 
 #include <pulsecore/socket-client.h>
 #include <pulse/mainloop-api.h>

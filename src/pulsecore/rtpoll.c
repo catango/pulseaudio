@@ -42,6 +42,17 @@
 
 #include "rtpoll.h"
 
+/*
+#ifdef HAVE_WINDOWS_H
+struct pollfd {
+        short events;
+        int fd;
+        short revents;
+};
+
+#endif
+*/
+
 /* #define DEBUG_TIMING */
 
 struct pa_rtpoll {

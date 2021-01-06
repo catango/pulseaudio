@@ -23,12 +23,24 @@
 
 #include <stdlib.h>
 #include <sys/types.h>
+
+
+#ifndef HAVE_WINDOWS_H
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <sys/ioctl.h>
+#else
+#include <winsock2.h>
+#include <ws2def.h>
+#endif
+
+
+
+
 #include <errno.h>
 #include <string.h>
 #include <unistd.h>
-#include <sys/ioctl.h>
+
 
 #ifdef HAVE_SYS_FILIO_H
 #include <sys/filio.h>
@@ -50,6 +62,15 @@
 #include "sdp.h"
 
 #define MIME_TYPE "application/sdp"
+
+#ifdef HAVE_WINDOWS_H
+struct iovec {
+        size_t len;
+        char *buf;
+};
+
+typedef WSAMSG msghdr;
+#endif
 
 pa_sap_context* pa_sap_context_init_send(pa_sap_context *c, int fd, char *sdp_data) {
     pa_assert(c);

@@ -21,7 +21,16 @@
 ***/
 
 #include <inttypes.h>
+
+
+#ifndef HAVE_WINDOWS_H
 #include <sys/socket.h>
+#else
+#include <Winsock2.h>
+#endif
+
+
+
 #include <sys/types.h>
 #include <pulsecore/memblockq.h>
 #include <pulsecore/memchunk.h>
