@@ -21,7 +21,12 @@
   License along with PulseAudio; if not, see <http://www.gnu.org/licenses/>.
 ***/
 
-#include <sys/time.h>
+#ifndef _MSC_VER
+ #include <sys/time.h>
+#else
+ #include <time.h>
+ #include <winsock.h>
+#endif
 
 #include <pulse/cdecl.h>
 #include <pulse/version.h>

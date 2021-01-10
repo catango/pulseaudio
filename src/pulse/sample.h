@@ -23,7 +23,10 @@
 
 #include <inttypes.h>
 #include <sys/types.h>
-#include <sys/param.h>
+
+#if HAVE_SYS_PARAM_H
+ #include <sys/param.h>
+#endif
 
 #include <pulse/gccmacro.h>
 #include <pulse/cdecl.h>

@@ -22,7 +22,13 @@
 ***/
 
 #include <inttypes.h>
-#include <sys/time.h>
+
+#ifndef _MSC_VER
+ #include <sys/time.h>
+#else
+ #include <time.h>
+ #include <winsock.h>
+#endif
 
 #include <pulse/cdecl.h>
 #include <pulse/sample.h>
