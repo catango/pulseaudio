@@ -12,10 +12,14 @@
 
 #include <pulsecore/socket.h>
 
+#if !defined HAVE_WS2TCPIP_H
+/* This function is defined in recent mingw32 in file ws2tcpip.h*/
+
 const char *inet_ntop(int af, const void *src, char *dst, socklen_t cnt);
 
 int inet_pton(int af, const char *src, void *dst);
 
 #endif
 
+#endif
 #endif

@@ -233,6 +233,10 @@ static inline size_t PA_ALIGN(size_t l) {
 #endif
 
 /* A compile time assertion */
+/* This macro breaks builds on windows - we make remove it therefor */
+#if defined (OS_IS_WIN32)
+#define pa_assert_cc(expr)
+#else
 #define pa_assert_cc(expr)                         \
     do {                                           \
         switch (0) {                               \
@@ -241,6 +245,7 @@ static inline size_t PA_ALIGN(size_t l) {
                 ;                                  \
         }                                          \
     } while (false)
+#endif
 
 #define PA_PTR_TO_UINT(p) ((unsigned int) ((uintptr_t) (p)))
 #define PA_UINT_TO_PTR(u) ((void*) ((uintptr_t) (u)))

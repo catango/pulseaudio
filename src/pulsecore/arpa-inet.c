@@ -31,6 +31,8 @@
 
 #include "arpa-inet.h"
 
+#if !defined HAVE_WS2TCPIP_H
+
 const char *inet_ntop(int af, const void *src, char *dst, socklen_t cnt) {
     struct in_addr *in = (struct in_addr*)src;
 #ifdef HAVE_IPV6
@@ -103,4 +105,5 @@ int inet_pton(int af, const char *src, void *dst) {
     return 1;
 }
 
+#endif
 #endif

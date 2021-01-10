@@ -24,7 +24,8 @@
 
 #if defined(HAVE_POLL_H)
 #include <poll.h>
-#else
+#elsif !defined HAVE_WINSOCK2_H
+/* This struct is defined in recent mingw32 in winsock2.h*/
 
 /* Event types that can be polled for.  These bits may be set in `events'
    to indicate the interesting event types; they will appear in `revents'
@@ -41,6 +42,7 @@
 #define POLLNVAL        0x020           /* Invalid polling request.  */
 
 /* Data structure describing a polling request.  */
+
 struct pollfd {
     int fd;                     /* File descriptor to poll.  */
     short int events;           /* Types of events poller cares about.  */
@@ -57,6 +59,6 @@ struct pollfd {
 
 #if defined(HAVE_POLL_H) && !defined(OS_IS_DARWIN)
 #define pa_poll(fds,nfds,timeout) poll((fds),(nfds),(timeout))
-#else
+#elsif !defined HAVE_WINSOCK2_H
 int pa_poll(struct pollfd *fds, unsigned long nfds, int timeout);
 #endif
